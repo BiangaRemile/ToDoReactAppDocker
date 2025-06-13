@@ -1,0 +1,15 @@
+
+services:
+  react-app:
+    container_name: todo-react-app
+    build:
+      context: .
+      target: dev  # cible dev par défaut
+    ports:
+      - 3000:3000
+    volumes:
+      - ./:/app:ro
+      - /app/node_modules
+    env_file:
+      - ./dev.env
+    command: npm run dev
