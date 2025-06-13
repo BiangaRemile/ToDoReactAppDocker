@@ -15,6 +15,11 @@ FROM base AS build
 
 RUN npm run build
 
+## developement mode
+
+FROM base as dev
+
+CMD [ "npm", "run", "dev" ]
 
 ## production mode
 
@@ -25,9 +30,3 @@ COPY --from=build /app/dist /usr/share/nginx/html
 EXPOSE 80
 
 CMD ["nginx", "-g", "daemon off;"]
-
-## developement mode
-
-FROM base as dev
-
-CMD [ "npm", "run", "dev" ]
